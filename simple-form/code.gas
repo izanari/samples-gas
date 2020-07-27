@@ -1,0 +1,17 @@
+function doGet() {
+  return HtmlService.createTemplateFromFile("index")
+   .evaluate();
+}
+
+function doPost(data){
+  const yourname = data.parameters.name.toString();
+  const gender = data.parameters.gender.toString();
+  const email = data.parameters.email.toString();
+  const spredsheetid = 'Your SpredSheet Id'
+  
+  SpreadsheetApp.openById(spredsheetid).getSheets()[0].appendRow([yourname,gender,email,new Date()]
+  );
+  
+  return HtmlService.createHtmlOutputFromFile("thanks");
+  
+}
